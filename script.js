@@ -37,3 +37,4 @@ function game(){
     }
     console.log(score.player>score.computer? "FELICIDADES! LE GANASTE A LA COMPUTADORA! ERES GENIAL! :D": "PERDISTE! LA COMPUTADORA TE GANÓ :(");
 }
+game();

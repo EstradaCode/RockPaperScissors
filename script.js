@@ -17,7 +17,7 @@ function playRound(playerSelection,computerSelection,){
         computerSelection == choice[0]? score.player++ : score.computer++;
         return(computerSelection == choice[0]? "You win! paper beats rock! :)" :"You lose! scissors beats paper! :(");
     }else {
-        computerSelection == choice[2]? score.computer++ : score.player++;
+        computerSelection == choice[0]? score.computer++ : score.player++;
         return (computerSelection == choice[0]? "You Lose! rock beats scissors!" : "You Win! scissors beats paper!");
     }
 }
@@ -26,7 +26,7 @@ function getPlayerChoice(playerChoice){
     document.getElementById("p-score").textContent= score.player;
     document.getElementById("c-score").textContent= score.computer;
     rounds--;
-    if(round < 1){
+    if(rounds < 1){
         for(let i=0;i<choice.length;i++){
             document.getElementsByClassName("btn")[i].setAttribute('disabled','true');
         }

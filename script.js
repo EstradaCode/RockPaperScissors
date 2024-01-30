@@ -21,22 +21,28 @@ function playRound(playerSelection,computerSelection,){
         return (computerSelection == choice[0]? "You Lose! rock beats scissors!" : "You Win! scissors beats paper!");
     }
 }
-function game(){
-    let rounds = 5;
-    let playerSelection,computerSelection;
-    console.log("YOU VS COMPUTER! BEST OF 5 ROUNDS! GO!");
-    while(rounds > 0){
-        playerSelection = prompt("Rock, paper or Scissors?").toLowerCase();
-        computerSelection = getComputerChoice();
-        console.log(`ROUND ${rounds}!`);
-        console.log(playRound(playerSelection,computerSelection));
-        rounds--;
+function getPlayerChoice(playerChoice){
+    h3.textContent = playRound(playerChoice, getComputerChoice());
+    document.getElementById("p-score").textContent= score.player;
+    document.getElementById("c-score").textContent= score.computer;
+    rounds--;
+    if(round < 1){
+        for(let i=0;i<choice.length;i++){
+            document.getElementsByClassName("btn")[i].setAttribute('disabled','true');
+        }
+        if(score.player == score.computer){
+            h3.textContent = 'IT WAS A TIE! F5 to Play again! :)';
+         }else{
+            h3.textContent = score.player>score.computer? "CONGRATS! I BEAT THE COMPUTER! YOU'RE AWESOME!" : "YOU LOSE! TRY HARDER NEXT TIME :(";
+         }
     }
-    if(score.player == score.computer){
-        console.log("FUE UN EMPATE! Habrá que jugar otra vez!");
-    }
-    console.log(score.player>score.computer? "FELICIDADES! LE GANASTE A LA COMPUTADORA! ERES GENIAL! :D": "PERDISTE! LA COMPUTADORA TE GANÓ :(");
 }
-const rock = document.getElementById('rock').addEventListener("click", ()=>{
-    alert(playRound("rock", getComputerChoice()));
-})
+
+let rounds= 5;
+const h3= document.createElement('h3');
+document.getElementsByClassName('presentacion')[0].appendChild(h3);
+
+document.getElementById('rock').addEventListener("click", () => getPlayerChoice("rock"));
+document.getElementById('paper').addEventListener("click", () => getPlayerChoice("paper"));
+document.getElementById('scissors').addEventListener("click", () => getPlayerChoice("scissors"));
+ 
